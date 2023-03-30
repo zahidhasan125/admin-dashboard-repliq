@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaPowerOff } from 'react-icons/fa';
 import { AiOutlineUserAdd, AiOutlineLogin } from 'react-icons/ai';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 
 const NavBar = () => {
-
+    const { user } = useContext(AuthContext);
+console.log(user);
     const submenu = <>
         <li>
             <Link>Home</Link>
@@ -55,11 +57,11 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-1">
-                <Link to='/login' className="border border-red-300 text-red-300 py-2 px-3 rounded-md cursor-pointer font-bold bg-inherit hover:scale-105 uppercase flex items-center gap-2">
+                <Link className="border border-red-300 text-red-300 py-2 px-3 rounded-md cursor-pointer font-bold bg-inherit hover:scale-105 uppercase flex items-center gap-2">
                     <FaPowerOff className='text-xl' />
                     Logout
                 </Link>
-                <Link className="border border-green-300 text-green-300 py-2 px-3 rounded-md cursor-pointer font-bold bg-inherit hover:scale-105 uppercase flex items-center gap-2">
+                <Link to='/login' className="border border-green-300 text-green-300 py-2 px-3 rounded-md cursor-pointer font-bold bg-inherit hover:scale-105 uppercase flex items-center gap-2">
                     <AiOutlineLogin className='text-xl font-bold' />
                     Login
                 </Link>
