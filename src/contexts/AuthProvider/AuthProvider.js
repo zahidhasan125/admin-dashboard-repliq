@@ -1,6 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import app from '../../firebase/firebase.config';
-import { getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 export const AuthContext = createContext();
 
@@ -9,12 +9,39 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+
+
+    const createUser = (email, password) => {
+        setIsLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
+
+    const userLogin = (email, password) => {
+        setIsLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+    const userLogout = () => {
+        setIsLoading(true);
+        return signOut(auth);
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            if (currentUser === null || currentUser.emailVerified || currentUser.providerData[0].uid) {
+                setUser(currentUser);
+            }
+            setIsLoading(false);
+        })
+        return () => unsubscribe();
+    },[])
 
     const authValue = {
         user,
-        isLoading
-
+        isLoading,
+        createUser,
+        userLogin,
+        userLogout
     }
     return (
         <AuthContext.Provider value={authValue}>
