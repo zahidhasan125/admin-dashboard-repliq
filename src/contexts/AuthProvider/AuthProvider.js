@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
             setIsLoading(false);
         })
         return () => unsubscribe();
-    },[])
+    }, [])
 
     const authValue = {
         user,
@@ -42,6 +42,9 @@ const AuthProvider = ({ children }) => {
         createUser,
         userLogin,
         userLogout
+    }
+    if (isLoading) {
+        return <progress className="progress w-full mx-auto bg-green-400"></progress>
     }
     return (
         <AuthContext.Provider value={authValue}>

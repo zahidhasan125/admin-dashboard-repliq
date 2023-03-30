@@ -13,7 +13,7 @@ const LoginForm = () => {
     const from = location.state?.from?.pathname || '/'
 
     if (token || loggedInUserEmail !== '') {
-        navigate(from, { replace: true })
+        navigate(from, { replace: true });
     }
 
     const handleLogin = (e) => {
@@ -25,7 +25,8 @@ const LoginForm = () => {
             .then(result => {
                 toast.success('Login Successful!')
                 const user = result.user;
-                setLoggedInUserEmail(user.email);                
+                setLoggedInUserEmail(user.email); 
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.error(err);
@@ -44,19 +45,19 @@ const LoginForm = () => {
                             <label className="label">
                                 <span className="label-text text-white">Email*</span>
                             </label>
-                            <input type="email" name='email' placeholder="Enter your email" className="input input-bordered" required/>
+                            <input type="email" name='email' placeholder="Enter your email" className="input input-bordered border-green-300 bg-slate-800" required/>
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-white">Password*</span>
                             </label>
-                            <input type="password" name='password' placeholder="P@$$w0Rd (At least 6 character)" className="input input-bordered" required/>
+                            <input type="password" name='password' placeholder="P@$$w0Rd (At least 6 character)" className="input input-bordered border-green-300 bg-slate-800" required/>
                         </div>
                         <label className="label">
-                            <span className="label-text-alt text-white">New to E-Shop? <Link to="/signup" className='link link-hover text-md text-cyan-500 font-bold'>Sign Up</Link></span>
+                            <span className="label-text-alt text-white">New to E-Shop? <Link to="/signup" className='link link-hover text-md text-blue-300 font-bold'>Sign Up</Link></span>
                         </label>
                         <div className="form-control mt-4">
-                            <button className="btn btn-outline text-white">Login</button>
+                            <button className="btn btn-outline border-green-300 hover:bg-green-300 text-white">Login</button>
                         </div>
                     </form>
                 </div>
