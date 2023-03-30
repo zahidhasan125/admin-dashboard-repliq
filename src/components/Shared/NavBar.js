@@ -6,8 +6,12 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 
 const NavBar = () => {
-    const { user } = useContext(AuthContext);
-console.log(user);
+    const { user, userLogout } = useContext(AuthContext);
+    console.log(user);
+    
+    const handleLogout = () => {
+        userLogout().then().catch()
+    }
     const submenu = <>
         <li>
             <Link>Home</Link>
@@ -57,7 +61,7 @@ console.log(user);
                 </ul>
             </div>
             <div className="navbar-end gap-1">
-                <Link className="border border-red-300 text-red-300 py-2 px-3 rounded-md cursor-pointer font-bold bg-inherit hover:scale-105 uppercase flex items-center gap-2">
+                <Link onClick={handleLogout} className="border border-red-300 text-red-300 py-2 px-3 rounded-md cursor-pointer font-bold bg-inherit hover:scale-105 uppercase flex items-center gap-2">
                     <FaPowerOff className='text-xl' />
                     Logout
                 </Link>
