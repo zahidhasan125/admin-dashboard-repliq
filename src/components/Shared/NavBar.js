@@ -4,10 +4,13 @@ import { FaPowerOff } from 'react-icons/fa';
 import { AiOutlineUserAdd, AiOutlineLogin } from 'react-icons/ai';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import CustomBtn from './CustomBtn';
+import useAdmin from '../../hooks/useAdmin';
 
 
 const NavBar = () => {
     const { user, userLogout } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
+    console.log(isAdmin);
 
     const handleLogout = () => {
         const confirmLogout = window.confirm('Are you sure to Logout?')
@@ -23,29 +26,36 @@ const NavBar = () => {
         <li>
             <Link>Cart</Link>
         </li>
-        <li tabIndex={0}>
-            <Link className="justify-between">
-                Dashboard
-                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-            </Link>
-            <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 bg-opacity-25 rounded-box">
-                <li>
-                    <Link>Customers</Link>
-                </li>
-                <li>
-                    <Link>Add Customer</Link>
-                </li>
-                <li>
-                    <Link>Orders</Link>
-                </li>
-                <li>
-                    <Link>Products</Link>
-                </li>
-                <li>
-                    <Link>Add Products</Link>
-                </li>
-            </ul>
-        </li>
+        {
+            isAdmin &&
+            <li tabIndex={0}>
+                <Link className="">
+                    Dashboard
+                        <svg className="fill-current md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                        <svg className="fill-current hidden md:block" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+                </Link>
+                {
+                    isAdmin &&
+                    <ul className="menu menu-compact dropdown-content p-1 shadow bg-base-100 bg-opacity-25 rounded-box">
+                        <li>
+                            <Link>Customers</Link>
+                        </li>
+                        <li>
+                            <Link>Add Customer</Link>
+                        </li>
+                        <li>
+                            <Link>Orders</Link>
+                        </li>
+                        <li>
+                            <Link>Products</Link>
+                        </li>
+                        <li>
+                            <Link>Add Products</Link>
+                        </li>
+                    </ul>
+                }
+            </li>
+        }
         {
             user ?
                 <li className='mt-1 md:hidden'>
@@ -86,8 +96,9 @@ const NavBar = () => {
         }
 
     </>
+
     return (
-        <div className="navbar border-b sticky top-0 z-40 px-6">
+        <div className="navbar px-6">
             <div className="navbar-start w-full justify-between">
                 <div className="dropdown md:hidden">
                     <label tabIndex={0} className="ps-0 cursor-pointer md:hidden">
@@ -97,10 +108,10 @@ const NavBar = () => {
                         {submenu}
                     </ul>
                 </div>
-                <Link to='/' className="uppercase border py-1 px-2 rounded-md font-semibold text-xl hover:scale-110">E-Shop</Link>
+                <Link to='/' className="uppercase border-double border-2 py-1 px-2 rounded-md font-semibold text-2xl hover:scale-110">E-Shop</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 divide-x divide-slate-800">
                     {submenu}
                 </ul>
             </div>
