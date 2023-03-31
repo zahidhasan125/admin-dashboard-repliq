@@ -10,8 +10,7 @@ import useAdmin from '../../hooks/useAdmin';
 const NavBar = () => {
     const { user, userLogout } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email);
-    console.log(isAdmin);
-
+    
     const handleLogout = () => {
         const confirmLogout = window.confirm('Are you sure to Logout?')
         confirmLogout && userLogout().then().catch()
@@ -36,7 +35,7 @@ const NavBar = () => {
                 </Link>
                 {
                     isAdmin &&
-                    <ul className="menu menu-compact dropdown-content p-1 shadow bg-base-100 bg-opacity-25 rounded-box">
+                    <ul className="menu menu-compact dropdown-content p-1 shadow bg-slate-700 bg-opacity-80 rounded-box z-20">
                         <li>
                             <Link>Customers</Link>
                         </li>
@@ -108,7 +107,7 @@ const NavBar = () => {
                         {submenu}
                     </ul>
                 </div>
-                <Link to='/' className="uppercase border-double border-2 py-1 px-2 rounded-md font-semibold text-2xl hover:scale-110">E-Shop</Link>
+                <Link to='/' className="uppercase border-double border-2 py-1 px-2 rounded-md font-semibold text-2xl hover:scale-110 ease-in-out duration-300">E-Shop</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 divide-x divide-slate-800">
@@ -122,7 +121,7 @@ const NavBar = () => {
                         textColor={"text-red-300"}
                         btnText={"Logout"}
                         handler={handleLogout}
-                        extraClass='hover:scale-105 hover:bg-gray-900'
+                        extraClass='hover:scale-105 hover:bg-gray-900 ease-in-out duration-300'
                     >
                         <FaPowerOff className='text-xl' />
                     </CustomBtn>
@@ -133,7 +132,7 @@ const NavBar = () => {
                                 borderColor="border-green-300"
                                 textColor={"text-green-300"}
                                 btnText={"Login"}
-                                extraClass='hover:scale-105 hover:bg-gray-900'
+                                extraClass='hover:scale-105 hover:bg-gray-900 ease-in-out duration-300'
                             >
                                 <AiOutlineLogin className='text-xl font-bold' />
                             </CustomBtn>
@@ -143,7 +142,7 @@ const NavBar = () => {
                                 borderColor="border-blue-300"
                                 textColor={"text-blue-300"}
                                 btnText={"Signup"}
-                                extraClass='hover:scale-105 hover:bg-gray-900'
+                                extraClass='hover:scale-105 hover:bg-gray-900 ease-in-out duration-300'
                             >
                                 <AiOutlineUserAdd className='text-xl font-bold' />
                             </CustomBtn>
