@@ -3,6 +3,8 @@ import Main from "../layouts/Main";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Home from "../pages/Home/Home";
+import Cart from "../pages/Cart/Cart";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter(
     [
@@ -21,6 +23,10 @@ export const router = createBrowserRouter(
                 {
                     path: '/signup',
                     element: <SignUp />
+                },
+                {
+                    path: '/cart',
+                    element: <PrivateRoute><Cart /></PrivateRoute>
                 }
             ]
         }

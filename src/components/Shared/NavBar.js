@@ -20,10 +20,10 @@ const NavBar = () => {
             <Link to='/'>Home</Link>
         </li>
         <li>
-            <Link>Products</Link>
+            <Link to='/products'>Products</Link>
         </li>
         <li>
-            <Link>Cart</Link>
+            <Link to='/cart'>Cart</Link>
         </li>
         {
             isAdmin &&
@@ -110,7 +110,7 @@ const NavBar = () => {
                 <Link to='/' className="uppercase border-double border-2 py-1 px-2 rounded-md font-semibold text-2xl hover:scale-110 ease-in-out duration-300">E-Shop</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 divide-x divide-slate-800">
+                <ul className="menu menu-horizontal px-1 divide-x divide-slate-700">
                     {submenu}
                 </ul>
             </div>

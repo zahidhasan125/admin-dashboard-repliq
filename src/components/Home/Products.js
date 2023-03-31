@@ -18,7 +18,7 @@ const Products = () => {
         return <progress className="progress w-full mx-auto bg-yellow-700"></progress>
     }
     return (
-        <div>
+        <div className='pb-12'>
             <h2 className='text-center text-5xl font-semibold my-8'>All Products</h2>
             <div className='text-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 px-8'>
 
