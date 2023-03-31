@@ -1,18 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import {toast} from 'react-hot-toast'
 import useToken from '../../hooks/useToken';
 
 const LoginForm = () => {
-    const { user, userLogin } = useContext(AuthContext);
-    const [loggedInUserEmail, setLoggedInUserEmail] = useState('');
-    const [token] = useToken(loggedInUserEmail);
+    const { user, userLogin, setIsLoading } = useContext(AuthContext);
+    const [token] = useToken(user?.email);
     const navigate = useNavigate();
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
-    if (token || loggedInUserEmail !== '') {
+    if (token) {
         navigate(from, { replace: true });
     }
 
@@ -22,17 +21,17 @@ const LoginForm = () => {
         const email = form.email.value;
         const password = form.password.value;
         userLogin(email, password)
-            .then(result => {
-                toast.success('Login Successful!')
-                const user = result.user;
-                setLoggedInUserEmail(user.email); 
-                navigate(from, { replace: true });
+            .then(() => {
+                toast.success('Login Successful!');
+                console.log(user?.email);
+                setIsLoading(false);
             })
             .catch(err => {
                 console.error(err);
                 const error = err.message.split('/')[1].substring(0, err.message.split('/')[1].length - 2);
                 const capError = error.charAt(0).toUpperCase() + error.slice(1)
                 toast.error(capError.split('-').join(' '));
+                setIsLoading(false);
             })
     }
     return (

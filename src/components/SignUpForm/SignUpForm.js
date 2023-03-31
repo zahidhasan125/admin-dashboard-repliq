@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
@@ -6,18 +6,18 @@ import useToken from '../../hooks/useToken';
 
 const SignUpForm = () => {
 
-    const { user, createUser, userLogout } = useContext(AuthContext);
-    const [loggedInUserEmail, setLoggedInUserEmail] = useState('');
-    const [token] = useToken(loggedInUserEmail);
+    const { user, createUser, userLogout, setIsLoading } = useContext(AuthContext);
+    const [token] = useToken(user?.email);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-    if (token || loggedInUserEmail !== '') {
+    if (token) {
         navigate(from, { replace: true });
     }
 
     const handleSignUp = e => {
+        setIsLoading(true);
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -27,7 +27,7 @@ const SignUpForm = () => {
             email
         }
 
-        fetch(`${process.env.REACT_APP_dnsNameForDev}/signup`, {
+        fetch(`${process.env.REACT_APP_dnsName}/signup`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -40,9 +40,8 @@ const SignUpForm = () => {
                 if (data.acknowledged) {
                     createUser(email, password)
                         .then(() => {
-                            setLoggedInUserEmail(user?.email);
                             toast.success('User Created Successfully!');
-                            navigate(from, { replace: true });
+                            setIsLoading(false);
                         })
                         .catch(err => {
                             console.error(err);
@@ -51,8 +50,8 @@ const SignUpForm = () => {
                                 const error = err.message?.split('/')[1].substring(0, err.message.split('/')[1].length - 2);
                                 const capError = error.charAt(0).toUpperCase() + error.slice(1);
                                 toast.error(capError.split('-').join(' '));
+                                setIsLoading(false);
                             }
-                            navigate(from, { replace: true });
                         })
                 } else if (data.message) {
                     toast.error(data.message);
