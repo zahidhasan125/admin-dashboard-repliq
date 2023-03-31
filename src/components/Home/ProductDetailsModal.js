@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 
 const ProductDetailsModal = ({ setSelectedProduct, selectedProduct }) => {
     const { user } = useContext(AuthContext);
-    const { title, price, images, description, brand, discountPercentage } = selectedProduct;
+    const { title, price, images, description, brand } = selectedProduct;
     const [quantity, setQuantity] = useState(1);
     const handleAddToCart = () => {
 

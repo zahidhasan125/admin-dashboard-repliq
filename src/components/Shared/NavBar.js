@@ -36,20 +36,23 @@ const NavBar = () => {
                 {
                     isAdmin &&
                     <ul className="menu menu-compact dropdown-content p-1 shadow bg-slate-700 bg-opacity-80 rounded-box z-20">
-                        <li>
+                        <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
                             <Link>Customers</Link>
                         </li>
-                        <li>
+                        <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
                             <Link>Add Customer</Link>
                         </li>
-                        <li>
+                        <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
                             <Link>Orders</Link>
                         </li>
-                        <li>
+                        <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
                             <Link>Products</Link>
                         </li>
-                        <li>
+                        <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
                             <Link>Add Products</Link>
+                        </li>
+                        <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
+                            <Link>Profile</Link>
                         </li>
                     </ul>
                 }
