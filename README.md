@@ -5,14 +5,16 @@
 
 ## View Dashboard with Admin credentials :point_down:
 
-Admin email:- md@gmail.com
+### [Admin Dashboard](https://admin-dashboard-repliq.web.app/dashboard) :- [https://admin-dashboard-repliq.web.app/dashboard](https://admin-dashboard-repliq.web.app/dashboard)
+
+Admin email:- md<span>@</span>gmail.com
 
 Admin password:- 123456
 
 
-## [Express Backend](https://e-commerce-admin-task-server.vercel.app)
+## [Express Backend Code](https://github.com/zahidhasan125/e-commerce-admin-task-server)
 
-[https://e-commerce-admin-task-server.vercel.app](https://e-commerce-admin-task-server.vercel.app)
+Live on Vercel:- [https://e-commerce-admin-task-server.vercel.app](https://e-commerce-admin-task-server.vercel.app)
 
 ## Features
 
@@ -24,6 +26,7 @@ Admin password:- 123456
 - Admin Order List/Detail View
 - Admin Product List/Detail View
 - Admin add product
+- Responsive on mobile, tablet and desktop devices.
 
 ## Used Libraries
 - tailwindcss : ^3.3.0
