@@ -31,7 +31,7 @@ const DashboardView = () => {
                     {/* Outlet content goes here */}
                     <Outlet />
                 </div>
-                <div className="drawer-side bg-gradient-to-tl from-gray-950 via-gray-800 to-gray-950">
+                <div className="drawer-side bg-gradient-to-tl from-gray-950 via-gray-800 to-gray-950 md:border-r border-gray-700">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-72 text-white">
                         {/* <!-- Sidebar content here --> */}
