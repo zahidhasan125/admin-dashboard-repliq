@@ -28,7 +28,7 @@ const AddProduct = () => {
             images: [thumbnail]
         }
 
-        fetch(`${process.env.REACT_APP_dnsNameForDev}/product`, {
+        fetch(`${process.env.REACT_APP_dnsName}/product`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

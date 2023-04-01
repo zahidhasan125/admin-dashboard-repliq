@@ -104,18 +104,9 @@ const Cart = () => {
                                 </tr>)
                             }
                         </tbody>
-                        {/* Cart Item Delete Confirmation Modal */}
-                        {
-                            selectedProduct &&
-                            <DeleteConfirmationModal
-                                handleRemoveFromCart={handleRemoveFromCart}
-                                selectedProduct={selectedProduct}
-                                setSelectedProduct={setSelectedProduct}
-                            ></DeleteConfirmationModal>
-                        }
                         <tfoot>
                             <tr>
-                            <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                     Image
                                 </th>
                                 <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
@@ -138,6 +129,16 @@ const Cart = () => {
 
                     </table>
                 }
+                {/* Cart Item Delete Confirmation Modal */}
+                {
+                    selectedProduct &&
+                    <DeleteConfirmationModal
+                        handleRemoveFromCart={handleRemoveFromCart}
+                        selectedProduct={selectedProduct}
+                        setSelectedProduct={setSelectedProduct}
+                    ></DeleteConfirmationModal>
+                }
+
             </div>
         </div>
     );
