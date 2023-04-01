@@ -52,7 +52,7 @@ const ProductDetailsModal = ({ setSelectedProduct, selectedProduct }) => {
                     <label onClick={() => setSelectedProduct(null)} htmlFor="products-detail-modal" className="btn btn-sm btn-circle absolute right-0 top-0 text-2xl">✕</label>
                     <Carousel>
                         {
-                            images.map((image, idx) =>
+                            images?.map((image, idx) =>
                                 <figure key={idx} className="px-5 pt-5">
                                     <img src={image} alt="Shoes" className="rounded-xl max-w-xs" />
                                 </figure>

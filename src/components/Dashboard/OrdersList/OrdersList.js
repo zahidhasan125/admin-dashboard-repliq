@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import DeleteConfirmationModal from '../../Shared/DeleteConfirmationModal';
-import ProductDetailsModal from '../../Home/ProductDetailsModal';
 import ViewDetailsModal from './ViewDetailsModal/ViewDetailsModal';
 
 const OrdersList = () => {
@@ -136,23 +135,23 @@ const OrdersList = () => {
                                 </th>
                             </tr>
                         </tfoot>
-                        {/* Cart Item Delete Confirmation Modal */}
-                        {
-                            selectedProduct &&
-                            <DeleteConfirmationModal
-                                handleRemoveFromCart={handleRemoveFromOrders}
-                                selectedProduct={selectedProduct}
-                                setSelectedProduct={setSelectedProduct}
-                            ></DeleteConfirmationModal>
-                        }
-
-                        {
-                            selectedForDetails && <ViewDetailsModal
-                                selectedProduct={selectedForDetails}
-                                setSelectedProduct={setSelectedForDetails}
-                            ></ViewDetailsModal>
-                        }
                     </table>
+                }
+                {/* Cart Item Delete Confirmation Modal */}
+                {
+                    selectedProduct &&
+                    <DeleteConfirmationModal
+                        handleRemoveFromCart={handleRemoveFromOrders}
+                        selectedProduct={selectedProduct}
+                        setSelectedProduct={setSelectedProduct}
+                    ></DeleteConfirmationModal>
+                }
+                {/* Item Details Modal */}
+                {
+                    selectedForDetails && <ViewDetailsModal
+                        selectedProduct={selectedForDetails}
+                        setSelectedProduct={setSelectedForDetails}
+                    ></ViewDetailsModal>
                 }
             </div>
         </div>
