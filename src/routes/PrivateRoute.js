@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 const PrivateRoute = ({ children }) => {
-    const { user, loading } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const { user, isLoading } = useContext(AuthContext);
+    const location = useLocation();
 
-    if (loading) {
+    if (isLoading) {
         return <progress className="progress w-full mx-auto"></progress>
     }
     if (!user) {
         toast.error("Please Login first.")
-        return navigate('/login');
+        return <Navigate to='/login' state={{from: location}} replace={true} ></Navigate>
     }
     return children;
 };

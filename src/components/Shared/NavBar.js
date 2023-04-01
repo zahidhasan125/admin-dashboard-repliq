@@ -28,7 +28,7 @@ const NavBar = () => {
         {
             isAdmin &&
             <li tabIndex={0}>
-                <Link className="">
+                <Link to='/dashboard' className="">
                     Dashboard
                         <svg className="fill-current md:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                         <svg className="fill-current hidden md:block" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
@@ -37,22 +37,22 @@ const NavBar = () => {
                     isAdmin &&
                     <ul className="menu menu-compact dropdown-content p-1 shadow bg-slate-700 bg-opacity-80 rounded-box z-20">
                         <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
-                            <Link>Customers</Link>
+                            <Link to='/dashboard/allcustomers'>Customers</Link>
                         </li>
                         <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
-                            <Link>Add Customer</Link>
+                            <Link to='/dashboard/addcustomers'>Add Customer</Link>
                         </li>
                         <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
-                            <Link>Orders</Link>
+                            <Link to='/dashboard/orderslist'>Orders</Link>
                         </li>
                         <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
-                            <Link>Products</Link>
+                            <Link to='/dashboard/productslist'>Products</Link>
                         </li>
                         <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
-                            <Link>Add Products</Link>
+                            <Link to='/dashboard/addproduct'>Add Products</Link>
                         </li>
                         <li className='hover:bg-slate-500 hover:font-bold hover:text-white'>
-                            <Link>Profile</Link>
+                            <Link to='/dashboard/profile'>Profile</Link>
                         </li>
                     </ul>
                 }
