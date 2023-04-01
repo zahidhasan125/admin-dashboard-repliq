@@ -70,13 +70,14 @@ const DashboardView = () => {
                                         Profile
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link to="/"><FaHome className='text-2xl' />
-                                        View Site Home
-                                    </Link>
-                                </li>
+
                             </>
                         }
+                        <li>
+                            <Link to="/"><FaHome className='text-2xl' />
+                                View Site Home
+                            </Link>
+                        </li>
                     </ul>
 
                 </div>

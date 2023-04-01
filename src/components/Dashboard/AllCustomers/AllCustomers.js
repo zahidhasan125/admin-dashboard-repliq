@@ -23,8 +23,8 @@ const AllCustomers = () => {
         return <progress className="progress w-full mx-auto"></progress>
     }
 
-    const handleDeleteCustomer = id => {
-        fetch(`${process.env.REACT_APP_dnsName}/customer/${id}`, {
+    const handleDeleteCustomer = customer => {
+        fetch(`${process.env.REACT_APP_dnsName}/customer?email=${customer.email}`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${localStorage.getItem('e-shop-task-token')}`
@@ -74,15 +74,7 @@ const AllCustomers = () => {
                             </tr>)
                         }
                     </tbody>
-                    {/* Cart Item Delete Confirmation Modal */}
-                    {
-                        selectedCustomer &&
-                        <CustomerDeleteConfirmationModal
-                            handleRemoveFromCart={handleDeleteCustomer}
-                            selectedCustomer={selectedCustomer}
-                            setSelectedCustomer={setSelectedCustomer}
-                        ></CustomerDeleteConfirmationModal>
-                    }
+
                     <tfoot>
                         <tr>
                             <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
@@ -98,6 +90,15 @@ const AllCustomers = () => {
                     </tfoot>
 
                 </table>
+                {/* Cart Item Delete Confirmation Modal */}
+                {
+                    selectedCustomer &&
+                    <CustomerDeleteConfirmationModal
+                        handleRemoveFromCart={handleDeleteCustomer}
+                        selectedCustomer={selectedCustomer}
+                        setSelectedCustomer={setSelectedCustomer}
+                    ></CustomerDeleteConfirmationModal>
+                }
             </div>
         </div>
     );

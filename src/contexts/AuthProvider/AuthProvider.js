@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateCurrentUser } from 'firebase/auth';
 
 export const AuthContext = createContext();
 
@@ -26,6 +26,12 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
+    const updateUserAfterCreation = () => {
+        const originalUser = auth.currentUser;
+        setIsLoading(true);
+        return updateCurrentUser(originalUser, auth.currentUser)
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             if (currentUser === null || currentUser.emailVerified || currentUser.providerData[0].uid) {
@@ -42,7 +48,8 @@ const AuthProvider = ({ children }) => {
         setIsLoading,
         createUser,
         userLogin,
-        userLogout
+        userLogout,
+        updateUserAfterCreation
     }
     if (isLoading) {
         return <progress className="progress w-full mx-auto bg-green-400"></progress>
